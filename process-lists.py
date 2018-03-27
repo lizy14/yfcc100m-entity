@@ -1,5 +1,4 @@
 import os
-import time
 import subprocess
 
 imagenet_root = "/home/dataset/ILSVRC2015/Data/CLS-LOC/train/"
@@ -9,6 +8,7 @@ filelist = "/home/justin/o/yfcc100m-entity/data/{domain}/full.txt"
 expected_url_prefix = "https://multimedia-commons.s3-us-west-2.amazonaws.com/data/images/"
 
 urls_filename = "urls.txt"
+
 with open(urls_filename, "w") as of:
     for domain in ['Artifacts', 'Species-I', 'Species-Y', 'Sports']:
         if domain != 'Sports':
@@ -39,8 +39,3 @@ with open(urls_filename, "w") as of:
                 continue
 
         print(domain, ':' , exist, "/", total)
-        subprocess.call([
-            'wget',
-            '--no-clobber',
-            '--input-file={}'.format(urls_filename)
-        ])
